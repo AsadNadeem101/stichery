@@ -16,12 +16,22 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function (){
+	
 	Route::get('/', function(){
 		return view('welcome');
 	});
-});
-Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+    //Profile
+    Route::group(['prefix' => 'profile'], function (){
+        Route::get('',function(){
+            return view('profile.index');
+        });
+        Route::get('change-password',function(){
+            return view('profile.change-password');
+        });
+        Route::post('change_password','Auth\ForgotPasswordController@changePassword')->name('change_password');
+
+    });
+	
+});
+

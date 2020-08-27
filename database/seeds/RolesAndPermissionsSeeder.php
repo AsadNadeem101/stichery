@@ -19,6 +19,12 @@ class RolesAndPermissionsSeeder extends Seeder
 		$permissionsByRole = [
 
 		    'super_admin' => [
+			    ['name'=>'category_list'],
+			    ['name'=>'category_create'],
+			    ['name'=>'category_edit'],
+			    ['name'=>'category_show'],
+			    ['name'=>'category_delete'],
+
 			    ['name'=>'product_list'],
 			    ['name'=>'product_create'],
 			    ['name'=>'product_edit'],
