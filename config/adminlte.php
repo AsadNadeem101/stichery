@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Stichery',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Stichery</b>STH',
+    'logo' => '<b>Stichery</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -214,7 +214,7 @@ return [
     |
     */
 
-    'enabled_laravel_mix' => false,
+    'enabled_laravel_mix' => true,
     'laravel_mix_css_path' => 'css/app.css',
     'laravel_mix_js_path' => 'js/app.js',
 
@@ -237,27 +237,47 @@ return [
             'topnav' => true,
         ],
         [
+            'text' => 'Dashboard',
+            'url'  => 'dashboard',
+            'icon' => 'fas fa-tv'
+        ],
+        [
             'text' => 'Category',
-            'url'  => 'category',
+            'url'  => 'categories',
             'can'  => 'category_list',
+            'icon' => 'fas fa-bars'
         ],
         [
             'text' => 'Product',
-            'url'  => 'product',
+            'url'  => 'products',
             'can'  => 'product_list',
-        ],        
+            'icon' => 'fas fa-tshirt'
+        ],  
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'Analytics',
+            'url'  => 'analytics',
+            'can'  => 'analytics_list',
+            'icon' => 'fas fa-chart-line'
+        ],        
+        ['header' => 'USERS'],
+        [
+            'text' => 'Tailor',
+            'url'  => 'tailors',
+            'can'  => 'tailor_list',
+            'icon' => 'fas fa-user-circle'
         ],
+        [
+            'text' => 'Customer',
+            'url'  => 'customers',
+            'can'  => 'customer_list',
+            'icon' => 'fas fa-female'
+        ],  
+
         ['header' => 'account_settings'],
         [
             'text' => 'Profile',
             'url'  => 'profile',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-address-card',
         ],
         [
             'text' => 'Change password',
@@ -307,7 +327,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -322,7 +342,12 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => 'http://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                ],
+                [
+                    'type'      => 'js',
+                    'asset'     => true,
+                    'location'  => 'vendor/datatables/buttons.server-side.js'
                 ],
             ],
         ],
@@ -352,7 +377,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

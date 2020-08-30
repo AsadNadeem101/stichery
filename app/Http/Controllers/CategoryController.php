@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\DataTables\CategoryDataTable;
 
 class CategoryController extends Controller
 {
@@ -19,9 +20,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CategoryDataTable $dataTable)
     {
-        return view('category.index');
+        return $dataTable->render('category.index');
     }
 
     /**

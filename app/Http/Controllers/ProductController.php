@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-         $input=$request->all();
+        $input=$request->all();
 
         Product::create($input);
 
@@ -88,7 +88,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product=Product::where('id',$request->product_id)->first()->update(['name'=>$request->name,'description'=>$request->description,'price'=>$request->price,'category_id'=>$request->category_id]);
+
+        $product=Product::where('id',$id)->update([
+            'name'        =>$request->name,
+            'description' =>$request->description,
+            'price'       =>$request->price,
+            'category_id' =>$request->category_id
+        ]);
 
         return redirect()->route('product.index');
     }

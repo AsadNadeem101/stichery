@@ -21,9 +21,9 @@ Route::group(['middleware' => 'auth'], function (){
 		return view('welcome');
 	});
 
-    	// Route::get('categories','CategoryController@index');
-    	Route::resource('category','CategoryController');
-    	Route::resource('product','ProductController');
+	Route::resource('categories','CategoryController');
+	Route::resource('products','ProductController');
+
     //Profile
     Route::group(['prefix' => 'profile'], function (){
         Route::get('',function(){
@@ -33,9 +33,6 @@ Route::group(['middleware' => 'auth'], function (){
             return view('profile.change-password');
         });
         Route::post('change_password','Auth\ForgotPasswordController@changePassword')->name('change_password');
-       
-
-
     });
 	
 });

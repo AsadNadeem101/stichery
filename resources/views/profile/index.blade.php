@@ -21,8 +21,8 @@
 			<td>{{Auth::user()->email}}</td>
 		</tr>
 		<tr>
-			<th>CNIC</th>
-			<td>{{Auth::user()->cnic}}</td>
+			<th>Type</th>
+			<td>{{Auth::user()->type}}</td>
 		</tr>
 	</table>
 @stop
