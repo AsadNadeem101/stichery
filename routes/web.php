@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function (){
 	});
 
 	Route::resource('categories','CategoryController');
+    Route::get('categories/{id}/delete','CategoryController@remove');
 	Route::resource('products','ProductController');
 
     //Profile

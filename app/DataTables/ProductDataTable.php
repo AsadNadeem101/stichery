@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Product;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoryDataTable extends DataTable
+class ProductDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,7 +21,7 @@ class CategoryDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'category.action')
+            ->addColumn('action', 'product.action')
             ->addColumn('delete', function ($query){
 
             $return = '<a href="/categories/'.$query->id.'/delete"><i class="ml-2 fas fa-trash" style="color: maroon"></i></a>';
@@ -33,10 +33,10 @@ class CategoryDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Category $model
+     * @param \App\Product $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Category $model)
+    public function query(Product $model)
     {
         return $model->newQuery();
     }
@@ -49,7 +49,7 @@ class CategoryDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('category-table')
+                    ->setTableId('product-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -75,13 +75,13 @@ class CategoryDataTable extends DataTable
             Column::make('name'),
             Column::make('description'),
             Column::make('created_at'),
-            Column::make('updated_at'),
+            // Column::make('updated_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('delete'),
+            Column::make('delete')
         ];
     }
 
@@ -92,6 +92,6 @@ class CategoryDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Category_' . date('YmdHis');
+        return 'Product_' . date('YmdHis');
     }
 }

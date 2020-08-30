@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\DataTables\ProductDataTable;
 
 class ProductController extends Controller
 {
@@ -20,10 +21,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ProductDataTable $dataTable)
     {
-         return view('product.index');
+        return $dataTable->render('product.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -91,6 +93,7 @@ class ProductController extends Controller
 
         $product=Product::where('id',$id)->update([
             'name'        =>$request->name,
+            'base_image'        =>$request->base_image,
             'description' =>$request->description,
             'price'       =>$request->price,
             'category_id' =>$request->category_id

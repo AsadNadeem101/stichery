@@ -16,6 +16,7 @@ class Product extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('base_image')->nullable();
             $table->integer('price');
             $table->string('description')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();

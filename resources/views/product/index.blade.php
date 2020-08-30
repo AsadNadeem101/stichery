@@ -7,15 +7,7 @@
 @stop
 
 @section('content')
-
-	<div class="container">
-		<div class="row">
-			<a href="{{ route('product.create') }}">
-				<button class="btn btn-success">Create Product</button>
-			</a>
-		</div>
-		
-	</div>
+    {{$dataTable->table()}}
 @stop
 
 @section('css')
@@ -23,5 +15,5 @@
 @stop
 
 @section('js')
-
+{{$dataTable->scripts()}}
 @stop

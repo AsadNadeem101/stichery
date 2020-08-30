@@ -86,7 +86,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category=Category::where('id',$request->category_id)->first()->update(['name'=>$request->name,'description'=>$request->description]);
-        return redirect()->route('category.index');
+        return redirect('categories');
     }
 
     /**
@@ -95,7 +95,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    // public function destroy($id)
+    // {
+    //     $category=Category::where('id',$id)->delete();
+
+    //     return redirect('categories');
+
+    // }
+    public function remove($id)
     {
         $category=Category::where('id',$id)->delete();
 
