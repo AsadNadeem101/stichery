@@ -47,7 +47,8 @@ class CategoryController extends Controller
 
         Category::create($input);
 
-        return view('category.index');
+        // return view('category.index');
+         return redirect('categories');
     }
 
     /**
@@ -98,6 +99,7 @@ class CategoryController extends Controller
     {
         $category=Category::where('id',$id)->delete();
 
-        return redirect()->route('category.index');
+        return redirect('categories');
+
     }
 }

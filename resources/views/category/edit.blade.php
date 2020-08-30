@@ -14,7 +14,7 @@
             <div class="heading-panel">
                <h3 class="main-title text-left">Edit Category</h3>
             </div>
-            <form method="POST" action="{{ route('category.update', $category->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('categories.update', $category->id) }}" enctype="multipart/form-data">
                {{csrf_field()}}
                {{method_field('PUT')}}
                <div class="row">

@@ -14,7 +14,7 @@
             <div class="heading-panel">
                <h3 class="main-title text-left">Create Category</h3>
             </div>
-            <form method="post" action="{{ route('category.store') }}">
+            <form method="post" action="{{ route('categories.store') }}">
                @csrf
                <div class="row">
                   <!-- category_type --verified -->
