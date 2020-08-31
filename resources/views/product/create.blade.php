@@ -14,7 +14,7 @@
             <div class="heading-panel">
                <h3 class="main-title text-left">Create Category</h3>
             </div>
-            <form method="post" action="{{ route('products.store') }}">
+            <form method="post" action="{{ route('products.store') }}" enctype="multipart/form-data">
                @csrf
                <div class="row">
                   <!-- category_type --verified -->
@@ -62,7 +62,7 @@
                   <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                      <div class="form-group">
                         <label>Base Image</label>
-                        <input name="base_image" placeholder="base image" class="form-control" type="text">
+                        <input name="image" placeholder="base image" class="form-control" type="file">
                      </div>
                   </div>
                  

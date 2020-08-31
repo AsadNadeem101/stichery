@@ -47,9 +47,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
         $input=$request->all();
+        
+        if($request->hasFile('image'))
+        {
+            $input = $request->all();
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension(); 
+            $image->move(public_path('product-images'), $imageName);
+            
+            $input['base_image'] = '/product-images/'.$imageName;
+            Product::create($input);    
+            return redirect('products');
+        }
 
-        Product::create($input);
 
         return redirect('products');
     }
