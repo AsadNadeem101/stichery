@@ -262,13 +262,13 @@ return [
         ['header' => 'USERS'],
         [
             'text' => 'Tailor',
-            'url'  => 'tailors',
+            'url'  => '/user-tailor',
             'can'  => 'tailor_list',
             'icon' => 'fas fa-user-circle'
         ],
         [
             'text' => 'Customer',
-            'url'  => 'customers',
+            'url'  => '/user-customer',
             'can'  => 'customer_list',
             'icon' => 'fas fa-female'
         ],  

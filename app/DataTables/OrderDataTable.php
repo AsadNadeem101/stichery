@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Product;
+use App\Models\Order;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductDataTable extends DataTable
+class OrderDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,22 +21,16 @@ class ProductDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'product.action')
-            ->addColumn('delete', function ($query){
-
-            $return = '<a href="/products/'.$query->id.'/delete"><i class="ml-2 fas fa-trash" style="color: maroon"></i></a>';
-            return $return;
-            })
-            ->escapeColumns([]);
+            ->addColumn('action', 'order.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Product $model
+     * @param \App\Order $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Product $model)
+    public function query(Order $model)
     {
         return $model->newQuery();
     }
@@ -49,7 +43,7 @@ class ProductDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('product-table')
+                    ->setTableId('order-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -71,18 +65,15 @@ class ProductDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('price'),
-            Column::make('description'),
-            Column::make('created_at'),
-            // Column::make('updated_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('delete')
+            Column::make('id'),
+            Column::make('add your columns'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
         ];
     }
 
@@ -93,6 +84,6 @@ class ProductDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Product_' . date('YmdHis');
+        return 'Order_' . date('YmdHis');
     }
 }

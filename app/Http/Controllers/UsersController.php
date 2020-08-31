@@ -7,24 +7,32 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller as Controller;
 use App\Http\Requests\StoreAdRequest;
 use App\Models\Category;
-use App\Models\Product;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use App\DataTables\ProductDataTable;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\DataTables\TailorDataTable;
+use App\DataTables\CustomerDataTable;
 
-class ProductController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProductDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('product.index');
+        //
+    }
+    public function tailorDataTable(TailorDataTable $dataTable)
+    {
+        return $dataTable->render('user.tailor');
+    }
+    public function customerDataTable(CustomerDataTable $dataTable)
+    {
+        return $dataTable->render('user.customer');
     }
 
 
@@ -35,8 +43,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category=Category::all();
-        return view('product.create',compact('category'));
+        //
     }
 
     /**
@@ -47,11 +54,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-
-        Product::create($input);
-
-        return redirect('products');
+        //
     }
 
     /**
@@ -73,13 +76,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        
-        $product=Product::where('id',$id)->first();
-        $product->category_id=Category::where('id',$product->category_id)->value('name');
-
-        $category=Category::all();
-
-        return view('product.edit',compact('category','product'));
+        //
     }
 
     /**
@@ -91,16 +88,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $product=Product::where('id',$id)->update([
-            'name'        =>$request->name,
-            'base_image'        =>$request->base_image,
-            'description' =>$request->description,
-            'price'       =>$request->price,
-            'category_id' =>$request->category_id
-        ]);
-
-        return redirect('products');
+        //
     }
 
     /**
@@ -109,19 +97,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function remove($id)
+    public function destroy($id)
     {
-        $product=Product::where('id',$id)->delete();
-
-        return redirect('products');
-
-    }
-    public function getDetails($id)
-    {
-        $product=Product::where('id',$id)->first();
-        $product->category_id=Category::where('id',$product->category_id)->value('name');
-
-        return $product;
-
+        //
     }
 }

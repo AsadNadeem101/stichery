@@ -14,7 +14,7 @@
             <div class="heading-panel">
                <h3 class="main-title text-left">Create Category</h3>
             </div>
-            <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
                {{csrf_field()}}
                {{method_field('PUT')}}
                <div class="row">
@@ -56,9 +56,17 @@
                       </select>
                      </div>
                   </div>
-                 
-
-                 
+                   
+               </div> 
+               <div class="row">
+                  <!-- category_type --verified -->
+                  <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                     <div class="form-group">
+                        <label>Price</label>
+                        <input name="base_image" value="{{$product->base_image}}" placeholder="base image" class="form-control" type="text">
+                     </div>
+                  </div>
+                  
                </div>               
                 <input type="hidden" name="product_id" value="{{$product->id}}">
                <button class="btn btn-success">Update</button>

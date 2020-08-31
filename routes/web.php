@@ -23,7 +23,16 @@ Route::group(['middleware' => 'auth'], function (){
 
 	Route::resource('categories','CategoryController');
     Route::get('categories/{id}/delete','CategoryController@remove');
+
 	Route::resource('products','ProductController');
+    Route::get('products/{id}/delete','ProductController@remove');
+    Route::get('product/{id}/detail','ProductController@getDetails');
+
+    Route::resource('orders','OrdersController');
+
+    Route::resource('users','UsersController');
+    Route::get('/user-tailor','UsersController@tailorDatatable');
+    Route::get('/user-customer','UsersController@customerDatatable');
 
     //Profile
     Route::group(['prefix' => 'profile'], function (){

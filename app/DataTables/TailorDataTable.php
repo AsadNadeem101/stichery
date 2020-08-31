@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Product;
+use App\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductDataTable extends DataTable
+class TailorDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,24 +21,26 @@ class ProductDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'product.action')
+            ->addColumn('action', 'user.action')
             ->addColumn('delete', function ($query){
 
-            $return = '<a href="/products/'.$query->id.'/delete"><i class="ml-2 fas fa-trash" style="color: maroon"></i></a>';
+            $return = '<a href="/users/'.$query->id.'/delete"><i class="ml-2 fas fa-trash" style="color: maroon"></i></a>';
             return $return;
             })
-            ->escapeColumns([]);
+            ->escapeColumns([]);            
+
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Product $model
+     * @param \App\Tailor $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Product $model)
+    public function query(User $model)
     {
-        return $model->newQuery();
+        $tailor=User::where('type','tailor');
+        return $tailor->newQuery();
     }
 
     /**
@@ -49,7 +51,7 @@ class ProductDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('product-table')
+                    ->setTableId('tailor-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -73,16 +75,16 @@ class ProductDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
-            Column::make('price'),
-            Column::make('description'),
+            Column::make('email'),
+            Column::make('address'),
+            Column::make('phone_no'),
             Column::make('created_at'),
-            // Column::make('updated_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('delete')
+            Column::make('delete'),
         ];
     }
 
@@ -93,6 +95,6 @@ class ProductDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Product_' . date('YmdHis');
+        return 'Tailor_' . date('YmdHis');
     }
 }

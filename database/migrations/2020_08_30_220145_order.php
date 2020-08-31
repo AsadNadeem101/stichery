@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Product extends Migration
+class Order extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,19 @@ class Product extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('order', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('base_image')->nullable();
             $table->integer('price');
-            $table->string('description')->nullable();
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('category');
+
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('tailor_id');
+            $table->foreign('tailor_id')->references('id')->on('users');
+
+            $table->date('start_date');
+            $table->date('end_date');
+
             $table->timestamps();
         });
     }
@@ -32,6 +37,6 @@ class Product extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('order');
     }
 }

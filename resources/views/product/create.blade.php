@@ -56,6 +56,16 @@
                      </div>
                   </div>
                  
+               </div> 
+               <div class="row">
+                  <!-- category_type --verified -->
+                  <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                     <div class="form-group">
+                        <label>Base Image</label>
+                        <input name="base_image" placeholder="base image" class="form-control" type="text">
+                     </div>
+                  </div>
+                 
                </div>               
 
                <button class="btn btn-success">Create</button>
