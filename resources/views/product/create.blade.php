@@ -12,7 +12,7 @@
          <!--  Form -->
          <div class="form-grid">
             <div class="heading-panel">
-               <h3 class="main-title text-left">Create Category</h3>
+               <h3 class="main-title text-left">Create Product</h3>
             </div>
             <form method="post" action="{{ route('products.store') }}" enctype="multipart/form-data">
                @csrf
