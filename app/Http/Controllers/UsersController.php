@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\DataTables\TailorDataTable;
 use App\DataTables\CustomerDataTable;
+use Illuminate\Support\Facades\Redirect;
+
 
 class UsersController extends Controller
 {
@@ -68,7 +70,7 @@ class UsersController extends Controller
         //
     }
 
-    /**
+    /**deactivate
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -88,9 +90,22 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
 
+    }
+    public function statusUpdated(Request $request)
+    {
+
+        $user=User::where('id',$request->id)->update(['status'=>$request->status]);
+        // \Log::info($user);
+        // $user
+
+        return Redirect::back();
+
+        // User::find($request->id)->update(['status'=>$request->status]);
+        // return Redirect::back();
+
+    }
+    
     /**
      * Remove the specified resource from storage.
      *

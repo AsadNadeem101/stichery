@@ -21,10 +21,26 @@ class CustomerDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('status', function ($query){
+
+                if($query->status == 'active'){ $checked = " checked "; }else{  $checked = ""; }
+                return '<input type="checkbox"
+                            data-toggle="toggle"
+                            data-width="145"
+                            data-height="30"
+                            data-size="small"
+                            data-onstyle="success"
+                            data-offstyle="danger"
+                            class="bt-toggle"
+                            data-on="'.'active'.'"
+                            data-off="'.'deactivate'.'"
+                            data-id="'.$query->id.'"  '.$checked.' onchange="updateUserStatus(this  )"  >';
+            })
             ->addColumn('action', 'user.action')
             ->addColumn('delete', function ($query){
 
-            $return = '<a href="/users/'.$query->id.'/delete"><i class="ml-2 fas fa-trash" style="color: maroon"></i></a>';
+            // $return = '<a href="/users/'.$query->id.'/delete"><i class="ml-2 fas fa-trash" style="color: maroon"></i></a>';
+                $return = '<a href=""><i class="ml-2 fas fa-trash" style="color: maroon"></i></a>';
             return $return;
             })
             ->escapeColumns([]); 
@@ -56,7 +72,7 @@ class CustomerDataTable extends DataTable
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create'),
+                        // Button::make('create'),
                         Button::make('export'),
                         Button::make('print'),
                         Button::make('reset'),
@@ -75,6 +91,7 @@ class CustomerDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
+            Column::make('status'),            
             Column::make('address'),
             Column::make('phone_no'),
             Column::make('created_at'),

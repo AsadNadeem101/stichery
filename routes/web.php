@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::resource('users','UsersController');
     Route::get('/user-tailor','UsersController@tailorDatatable');
     Route::get('/user-customer','UsersController@customerDatatable');
+    Route::post('/user/update-status', 'UsersController@statusUpdated');
 
     //Profile
     Route::group(['prefix' => 'profile'], function (){
