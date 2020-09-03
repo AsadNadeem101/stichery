@@ -77,9 +77,17 @@
                 <td>{{App\Helpers\Helper::userIdToName($o['tailor_id'])}}</td>
                 <td>{{$o['price']}}</td>
                 @if($o['status'] =='cancelled')
+                <td class=" badge bg-danger">{{$o['status']}}</td>
+                @elseif($o['status'] =='pending')
                 <td class=" badge bg-warning">{{$o['status']}}</td>
-                @else
-                <td>{{$o['status']}}</td>
+                @elseif($o['status'] =='accepted')
+                <td class=" badge bg-success">{{$o['status']}}</td>
+                @elseif($o['status'] =='in-progress')
+                <td class=" badge bg-secondary">{{$o['status']}}</td>
+                @elseif($o['status'] =='dispatched')
+                <td class=" badge bg-primary">{{$o['status']}}</td>
+                @elseif($o['status'] =='recieved')
+                <td class=" badge bg-info">{{$o['status']}}</td>
                 @endif
                 <td>{{$o['start_date']}}</td>
                 <td>{{$o['end_date']}}</td>

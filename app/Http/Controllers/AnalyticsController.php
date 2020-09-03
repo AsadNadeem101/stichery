@@ -25,12 +25,7 @@ class AnalyticsController extends Controller
     	$tailor=User::where('type','tailor')->count();
     	$price=Order::sum('price');
 
-    	//for customer
-    	$customer_order=Order::where('customer_id',Auth::user()->id)->get();
-    	// $customer_order=$customer_order->toArray();	
-
-    	\Log::info($customer_order);
-    	
+    	$customer_order=Order::where('customer_id',Auth::user()->id)->get();  	
 
     	$customer_order_count=DB::table('order')
     					->join('users','order.customer_id','users.id')
