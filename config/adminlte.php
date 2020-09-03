@@ -242,6 +242,18 @@ return [
             'icon' => 'fas fa-tv'
         ],
         [
+            'text' => 'Tailor Orders',
+            'url'  => 'orders',
+            // 'can'  => 'tailor_list',
+            'icon' => 'fas fa-bars'
+        ],
+        [
+            'text' => 'Customer Orders',
+            'url'  => 'customer-orders',
+            // 'can'  => 'tailor_list',
+            'icon' => 'fas fa-bars'
+        ],
+        [
             'text' => 'Category',
             'url'  => 'categories',
             'can'  => 'category_list',

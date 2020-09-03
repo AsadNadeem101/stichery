@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('product/{id}/detail','ProductController@getDetails');
 
     Route::resource('orders','OrdersController');
+    Route::get('customer-orders','OrdersController@customerOrders');
+    Route::get('order/{id}/{status}','OrdersController@updateStatus');
 
     Route::resource('users','UsersController');
     Route::get('/user-tailor','UsersController@tailorDatatable');

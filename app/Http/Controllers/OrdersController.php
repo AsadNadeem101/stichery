@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\DataTables\OrderDataTable;
-
+use App\DataTables\TailorOrdersDataTable;
+use App\DataTables\CustomerOrdersDataTable;
 class OrdersController extends Controller
 {
     /**
@@ -22,9 +23,9 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(OrderDataTable $dataTable)
+    public function index(TailorOrdersDataTable $dataTable)
     {
-        return $dataTable->render('order.index');
+        return $dataTable->render('order.tailor-orders');
     }
 
     /**
@@ -91,5 +92,25 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateStatus($id,$status)
+    {
+        if($status == 'recieved')
+        {
+            Order::where('id',$id)->update(['status'=>$status]);
+            return redirect('/customer-orders');
+
+        }
+        else{
+            Order::where('id',$id)->update(['status'=>$status]);
+            return redirect('orders');            
+        }
+
+
+
+    }
+     public function customerOrders(CustomerOrdersDataTable $dataTable)
+    {
+        return $dataTable->render('order.customer-orders');
     }
 }
