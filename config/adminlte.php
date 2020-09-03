@@ -248,6 +248,12 @@ return [
             'icon' => 'fas fa-bars'
         ],
         [
+            'text' => 'All Orders',
+            'url'  => 'all-orders',
+            // 'can'  => 'tailor_list',
+            'icon' => 'fas fa-bars'
+        ],
+        [
             'text' => 'Customer Orders',
             'url'  => 'customer-orders',
             // 'can'  => 'tailor_list',
@@ -268,7 +274,7 @@ return [
         [
             'text' => 'Analytics',
             'url'  => 'analytics',
-            'can'  => 'analytics_list',
+            // 'can'  => 'analytics_list',
             'icon' => 'fas fa-chart-line'
         ],        
         ['header' => 'USERS'],

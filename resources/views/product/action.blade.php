@@ -1,4 +1,4 @@
-<a href="#" id="{{$id}}" onclick="detail(id);"><i class="fas fa-eye" style="color: darkblue"></i></a>
+<!-- <a href="#" id="{{$id}}" onclick="detail(id);"><i class="fas fa-eye" style="color: darkblue"></i></a> -->
 <a href="{{ route('products.edit',$id) }}"><i class="fas fa-pen" style="color: brown"></i></a>
 
 <script type="text/javascript">

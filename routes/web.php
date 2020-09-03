@@ -21,14 +21,18 @@ Route::group(['middleware' => 'auth'], function (){
 		return view('welcome');
 	});
 
+    Route::get('analytics','AnalyticsController@index');
+
 	Route::resource('categories','CategoryController');
     Route::get('categories/{id}/delete','CategoryController@remove');
 
 	Route::resource('products','ProductController');
     Route::get('products/{id}/delete','ProductController@remove');
     Route::get('product/{id}/detail','ProductController@getDetails');
+    Route::get('/product-data/{id}', 'ProductController@loadProductData')->name('loadProductData');
 
     Route::resource('orders','OrdersController');
+    Route::get('all-orders','OrdersController@adminOrders');
     Route::get('customer-orders','OrdersController@customerOrders');
     Route::get('order/{id}/{status}','OrdersController@updateStatus');
 

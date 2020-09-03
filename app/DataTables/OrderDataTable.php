@@ -8,6 +8,8 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Auth;
+use App\Helpers\Helper;
 
 class OrderDataTable extends DataTable
 {
@@ -19,9 +21,44 @@ class OrderDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables()
+            return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'order.action');
+            ->editColumn('status',function ($query){
+
+                switch($query->status){
+                    case "pending":
+                        $class = "bg-warning";
+                        break;
+                    case "accepted":
+                        $class = "bg-success";
+                        break;
+                    case "in-progress":
+                        $class = "bg-secondary";
+                        break;
+                    case "dispatched":
+                        $class = "bg-primary";
+                        break;
+                    case "recieved":
+                        $class = "bg-info";
+                        break;    
+                    case "cancelled":
+                        $class = "bg-danger";
+                        break;
+                    default:
+                        $class = "bg-warning";
+                }
+
+                return '<span class="badge '.$class.'">'.strtolower($query->status).'</span>';
+            })
+            ->addColumn('tailor_name', function ($query){
+
+                return Helper::userIdToName($query->tailor_id);   
+            })
+            ->addColumn('customer_name', function ($query){
+
+                return Helper::userIdToName($query->customer_id);   
+            })
+            ->escapeColumns([]);
     }
 
     /**
@@ -32,6 +69,7 @@ class OrderDataTable extends DataTable
      */
     public function query(Order $model)
     {
+        // $model=Order::all();
         return $model->newQuery();
     }
 
@@ -49,7 +87,7 @@ class OrderDataTable extends DataTable
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create'),
+                        // Button::make('create'),
                         Button::make('export'),
                         Button::make('print'),
                         Button::make('reset'),
@@ -65,15 +103,20 @@ class OrderDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('price')
+            ->width(20),
+            Column::make('tailor_name'),
+            Column::make('customer_name'),
+            Column::make('status'),
+            Column::make('start_date'),
+            Column::make('end_date'),
+             // Column::make('stage'),
+            // Column::make('updated_at'),
+            // Column::computed('action')
+            //       ->exportable(false)
+            //       ->printable(false)
+            //       ->width(120),
         ];
     }
 

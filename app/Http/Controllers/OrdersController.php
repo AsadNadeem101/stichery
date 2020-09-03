@@ -27,6 +27,10 @@ class OrdersController extends Controller
     {
         return $dataTable->render('order.tailor-orders');
     }
+    public function adminOrders(OrderDataTable $dataTable)
+    {
+        return $dataTable->render('order.admin-orders');
+    }
 
     /**
      * Show the form for creating a new resource.

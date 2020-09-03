@@ -21,6 +21,9 @@ class ProductDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('name', function ($query){
+                return '<a href="#" onclick="loadProductData(this)"  data-user_id="'.$query->id.'" >'.$query->name.'</a>';
+            })
             ->addColumn('action', 'product.action')
             ->addColumn('delete', function ($query){
 

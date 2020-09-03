@@ -27,7 +27,10 @@ class ProductController extends Controller
         return $dataTable->render('product.index');
     }
 
-
+    public function loadProductData($id){
+        $product = Product::find($id);
+        return view('product.product-data', compact('product'));
+    }
     /**
      * Show the form for creating a new resource.
      *
