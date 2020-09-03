@@ -98,6 +98,45 @@
   	</div>
   	
   </div>
+ @elseif(Auth::user()->type=='tailor')
+ 	<div class="row">
+  	<div class="col-md-12">
+  		<h2>Orders Detail</h2>
+		<table class="table table-striped">
+        	<thead>
+        		<th>Customer Name</th>
+        		<th>Price</th>
+        		<th>Status</th>
+        		<th>Start Date</th>
+        		<th>End Date</th>
+        	</thead>
+            <tbody>
+            @foreach($tailor_order as $o)	
+              <tr>
+                <td>{{App\Helpers\Helper::userIdToName($o['customer_id'])}}</td>
+                <td>{{$o['price']}}</td>
+                @if($o['status'] =='cancelled')
+                <td class=" badge bg-danger">{{$o['status']}}</td>
+                @elseif($o['status'] =='pending')
+                <td class=" badge bg-warning">{{$o['status']}}</td>
+                @elseif($o['status'] =='accepted')
+                <td class=" badge bg-success">{{$o['status']}}</td>
+                @elseif($o['status'] =='in-progress')
+                <td class=" badge bg-secondary">{{$o['status']}}</td>
+                @elseif($o['status'] =='dispatched')
+                <td class=" badge bg-primary">{{$o['status']}}</td>
+                @elseif($o['status'] =='recieved')
+                <td class=" badge bg-info">{{$o['status']}}</td>
+                @endif
+                <td>{{$o['start_date']}}</td>
+                <td>{{$o['end_date']}}</td>
+              </tr>
+            @endforeach                     
+            </tbody>
+        </table>	  		
+  	</div>
+  	
+  </div>
  @endif 
   <div class="row">
     <div class="col-md-12">
@@ -132,7 +171,30 @@
         </article>
 
         @elseif(Auth::user()->type=='tailor')
-
+        <article style=" margin-left: 10px; border-radius: 2rem;box-shadow: 7px 9px 5px #85abd0;" class="article  hvr-grow">
+          	<a href="/orders">	
+	            <h1 style="color: #212529; font-weight: bold;font-size: 25px">Total Orders</h1>
+	            <div class="row">
+	              <div class="col-md-12">
+	                <div style="background-color: #cecece; height: 100px;border-radius: 2rem;">
+	                  <h1 style=" color: black; text-align: center;padding-top: 30px;">{{$tailor_order_count}}&nbsp;<i class="fas fa-info-circle" style="color:#1f3e63;font-size: 30px;"></i></h1>
+	                </div>
+	              </div>
+	            </div>  
+           	</a>      
+        </article>
+        <article style="margin-left: 10px; border-radius: 2rem;box-shadow: 7px 9px 5px #85abd0;" class="article  hvr-grow">
+          	<a href="/orders">	
+	            <h1 style="color: #212529; font-weight: bold;font-size: 25px">Total Earnings</h1>
+	            <div class="row">
+	              <div class="col-md-12">
+	                <div style="background-color: #cecece; height: 100px;border-radius: 2rem;">
+	                  <h1 style=" color: black; text-align: center;padding-top: 30px;">{{$tailor_spent}}-/Rs&nbsp;<i class="fas fa-info-circle" style="color:#1f3e63;font-size: 30px;"></i></h1>
+	                </div>
+	              </div>
+	            </div>  
+           	</a>      
+        </article>
 
 		@elseif(Auth::user()->type == 'super_admin')	       	
           <article style="margin-left: 10px; border-radius: 2rem;box-shadow: 7px 9px 5px #85abd0;" class="article  hvr-grow">
