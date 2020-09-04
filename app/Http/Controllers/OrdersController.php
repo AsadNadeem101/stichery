@@ -9,6 +9,7 @@ use App\Http\Requests\StoreAdRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -50,7 +51,16 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order= new Order;
+            $order->price=$request['price'];
+            $order->customer_id=$request['customer_id'];
+            $order->tailor_id=$request['tailor_id'];
+             $order->product_id=$request['product_id'];
+            $order->length=$request['length'];
+            $order->start_date=$request['start_date'];
+            $order->end_date=$request['end_date'];
+            $order->save();
+            return redirect('/customer-orders');
     }
 
     /**
@@ -113,8 +123,15 @@ class OrdersController extends Controller
 
 
     }
-     public function customerOrders(CustomerOrdersDataTable $dataTable)
+    public function customerOrders(CustomerOrdersDataTable $dataTable)
     {
         return $dataTable->render('order.customer-orders');
+    }
+    public function manageOrder($id)
+    {
+        $start_date=Carbon::now()->format('Y-m-d');
+        $end_date=Carbon::parse($start_date)->addDays(10)->format('Y-m-d');
+        $tailor=User::where('type','tailor')->get();
+        return view('order.create-order',compact('id','tailor','start_date','end_date'));
     }
 }

@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('all-orders','OrdersController@adminOrders');
     Route::get('customer-orders','OrdersController@customerOrders');
     Route::get('order/{id}/{status}','OrdersController@updateStatus');
+    Route::get('manage/{id}/order','OrdersController@manageOrder')->name('manage-order');
+    
 
     Route::resource('users','UsersController');
     Route::get('/user-tailor','UsersController@tailorDatatable');

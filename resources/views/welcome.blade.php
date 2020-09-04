@@ -8,6 +8,9 @@
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>
+    @if(Auth::user()->type=='customer')
+    <a href="{{ route('manage-order',5) }}"><button class="btn btn-success">Manage Order</button></a>
+    @endif
 @stop
 
 @section('css')

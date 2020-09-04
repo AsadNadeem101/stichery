@@ -58,6 +58,10 @@ class OrderDataTable extends DataTable
 
                 return Helper::userIdToName($query->customer_id);   
             })
+            ->addColumn('product_name', function ($query){
+
+                return Helper::productIdToName($query->product_id);   
+            })
             ->escapeColumns([]);
     }
 
@@ -108,6 +112,9 @@ class OrderDataTable extends DataTable
             ->width(20),
             Column::make('tailor_name'),
             Column::make('customer_name'),
+            Column::make('product_name'),
+            Column::make('size'),
+            Column::make('length'),
             Column::make('status'),
             Column::make('start_date'),
             Column::make('end_date'),

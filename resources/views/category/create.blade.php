@@ -39,7 +39,7 @@
             </form>
          </div>
          <!-- Form -->
-      </div>
+</div>
 @stop
 
 @section('css')

@@ -23,6 +23,13 @@ class Order extends Migration
             $table->unsignedBigInteger('tailor_id');
             $table->foreign('tailor_id')->references('id')->on('users');
 
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('product');            
+
+            $table->enum('size', ['XS','S','M','L','XL']);
+
+            $table->integer('length')->nullable();
+
             $table->enum('status', ['pending','accepted','in-progress','dispatched','recieved','cancelled'])->default('pending');
 
             $table->date('start_date');

@@ -53,6 +53,10 @@ class CustomerOrdersDataTable extends DataTable
 
                 return Helper::userIdToName($query->tailor_id);   
             })
+            ->addColumn('product_name', function ($query){
+
+                return Helper::productIdToName($query->product_id);   
+            })
            ->addColumn('action', function ($query){
                 if($query->status=='dispatched')
                 {
@@ -119,6 +123,9 @@ class CustomerOrdersDataTable extends DataTable
             Column::make('price')
             ->width(20),
             Column::make('tailor_name'),
+            Column::make('product_name'),
+            Column::make('size'),
+            Column::make('length'),
             Column::make('status'),
             Column::make('start_date'),
             Column::make('end_date'),
