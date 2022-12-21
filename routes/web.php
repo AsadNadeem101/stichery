@@ -21,6 +21,10 @@ Route::group(['middleware' => 'auth'], function (){
 		return view('welcome');
 	});
 
+    Route::get('/dashboard', function(){
+		return view('welcome');
+	});
+
     Route::get('analytics','AnalyticsController@index');
 
 	Route::resource('categories','CategoryController');
@@ -54,5 +58,9 @@ Route::group(['middleware' => 'auth'], function (){
         Route::post('change_password','Auth\ForgotPasswordController@changePassword')->name('change_password');
     });
 	
+    Route::get('logout', function(){
+        Auth::logout();
+        return redirect('/');
+    });
 });
 

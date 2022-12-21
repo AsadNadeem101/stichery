@@ -244,19 +244,19 @@ return [
         [
             'text' => 'Tailor Orders',
             'url'  => 'orders',
-            // 'can'  => 'tailor_list',
+            //'can'  => 'tailor_list',
             'icon' => 'fas fa-bars'
         ],
         [
             'text' => 'All Orders',
             'url'  => 'all-orders',
-            // 'can'  => 'tailor_list',
+             'can'  => 'tailor_list',
             'icon' => 'fas fa-bars'
         ],
         [
             'text' => 'Customer Orders',
             'url'  => 'customer-orders',
-            // 'can'  => 'tailor_list',
+             'can'  => 'tailor_list',
             'icon' => 'fas fa-bars'
         ],
         [
@@ -274,7 +274,7 @@ return [
         [
             'text' => 'Analytics',
             'url'  => 'analytics',
-            // 'can'  => 'analytics_list',
+             'can'  => 'analytics_list',
             'icon' => 'fas fa-chart-line'
         ],        
         ['header' => 'USERS'],
@@ -349,17 +349,17 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => 'http://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
                 [

@@ -24,6 +24,8 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //tailor
     public function index(TailorOrdersDataTable $dataTable)
     {
         return $dataTable->render('order.tailor-orders');
